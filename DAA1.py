@@ -1,35 +1,23 @@
-# Iterative Fibonacci (Efficient)
-def fibonacci_iterative(n):
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
+n = int(input("Enter a number for sequence: "))
 
-# Recursive Fibonacci with Step Count (Inefficient)
-step_count = 0
+a, b = 0, 1
+count = 0
 
-def fibonacci_recursive(n):
-    global step_count
-    step_count += 1  # Count each function call as a step
-    if n <= 1:
-        return n
+print("Fibonacci sequence:")
+while count < n:
+    print(a,end=" ")
+    a, b = b,a+b
+    count+=1
+
+def fiboRecursive(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
     else:
-        return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+        return fiboRecursive(n - 1) + fiboRecursive(n - 2)
 
-# Function to call both methods and display results
-def main():
-    n = int(input("Enter the position in Fibonacci sequence: "))
-    
-    # Iterative Fibonacci Calculation
-    result_iter = fibonacci_iterative(n)
-    print(f"Iterative approach: Fibonacci number at position {n} is {result_iter}")
-    
-    # Recursive Fibonacci Calculation with Step Count
-    global step_count
-    step_count = 0  # Reset step count before calculation
-    result_recur = fibonacci_recursive(n)
-    print(f"Recursive approach: Fibonacci number at position {n} is {result_recur}")
-    print(f"Recursive approach step count: {step_count}")
-
-# Run the program
-main()
+print()
+n = int(input("Enter a number for nth term: "))
+print(n,"th term is")
+print(fiboRecursive(n))
